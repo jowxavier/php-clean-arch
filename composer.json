@@ -1,0 +1,26 @@
+{
+    "name": "jowxavier/clean-arch",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "App\\CleanArch\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Jonathan Xavier Ribeiro",
+            "email": "jonathanxribeiro@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "pestphp/pest": "^2.18"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "require": {
+        "dompdf/dompdf": "^2.0"
+    }
+}
