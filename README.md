@@ -8,15 +8,16 @@ docker-compose up -d
 ```
 
 ### Criando banco de dados e inserindo dado
+##### Acessando container de bando de dados
+```bash
+docker-compose exec mysql bash
+```
+
 ```bash
 use clean_arch;
-```
 
-```bash
 create table customers(id int auto_increment, name varchar(100) not null, email varchar(100) not null, birth_date date not null, constraint table_name_pk primary key (id));
-```
 
-```bash
 insert into customers (name, email, birth_date) values ('Bruce Wayne', 'bruce@warner-dc.com', '1915-04-07');
 ```
 
