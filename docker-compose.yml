@@ -3,6 +3,7 @@ version: '3.9'
 services:
     web:
         image: nginx:latest
+        container_name: clean-arch-web
         ports:
             - '80:80'
         volumes:
@@ -12,8 +13,21 @@ services:
     clean-arch:
         build:
             context: ./config
-        container_name: clean-arch
+        container_name: clean-arch-app
         volumes:
             - ./:/var/www/html
         ports:
             - "9000:9000"
+
+    mysql:
+        image: mysql:5.7
+        container_name: clean-arch-db
+        command: --default-authentication-plugin=mysql_native_password --explicit_defaults_for_timestamp=1
+        restart: always
+        ports:
+            - "3306:3306"
+        environment:
+            MYSQL_ROOT_PASSWORD: secret
+            MYSQL_DATABASE: clean_arch
+        volumes:
+            - ./.docker/data:/var/lib/mysql

@@ -2,9 +2,9 @@
 
 namespace App\CleanArch\Infrastructure\Adapters;
 
-use App\CleanArch\UseCases\Contracts\StorageContractInterface;
+use App\CleanArch\UseCases\Contracts\StorageInterface;
 
-final class LocalStorageAdapter implements StorageContractInterface
+final class LocalStorageAdapter implements StorageInterface
 {
     public function store(string $fileName, string $path, string $content)
     {

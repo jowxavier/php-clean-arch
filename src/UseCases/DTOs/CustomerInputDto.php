@@ -2,7 +2,7 @@
 
 namespace App\CleanArch\UseCases\DTOs;
 
-final class CustomerInputDto
+class CustomerInputDto
 {
     public function __construct(
         private string $email,

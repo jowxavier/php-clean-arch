@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y \
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg=/usr/include/ --enable-gd
 
 # Instalar extensões
-RUN docker-php-ext-install gd
+RUN docker-php-ext-install mysqli pdo_mysql gd
 
 # Instalar composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
