@@ -2,13 +2,12 @@
 
 namespace App\CleanArch\Infrastructure\Adapters;
 
-use App\CleanArch\Domain\Entities\Customer;
-use App\CleanArch\UseCases\Contracts\CustomerPdfContractInterface;
+use App\CleanArch\UseCases\Contracts\PdfInterface;
 use Dompdf\Dompdf;
 
-final class DomPdfAdapter implements CustomerPdfContractInterface
+final class DomPdfAdapter implements PdfInterface
 {
-    public function generate(Customer $customer): string
+    public function generate(string $content): string
     {
         $dompdf = new Dompdf();
         $dompdf->loadHtml("<p>Nome: {$customer->getName()}</p>");

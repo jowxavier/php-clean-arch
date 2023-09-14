@@ -18,8 +18,10 @@ $findRepository = new stdClass();
 $pdf = new DomPdfAdapter();
 $storage = new LocalStorageAdapter();
 
-$useCase = new CustomerUseCase($findRepository, $pdf, $storage); 
+//$useCase = new CustomerUseCase($findRepository, $pdf, $storage); 
 
-$content = $pdf->generate($customer);
+$html = "<p>Nome: {$customer->getName()}</p>";
+
+$content = $pdf->generate($html);
 $storage->store('test.pdf', __DIR__. '/../storage/customer', $content);exit();
 
