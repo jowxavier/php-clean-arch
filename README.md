@@ -1,4 +1,4 @@
-## Clean Arch PHP
+## Clean Arch - Pest PHP
 
 Este projeto baseado em [Docker](https://www.docker.com/), sendo necessário sua instalação para execução do ambiente.
 
