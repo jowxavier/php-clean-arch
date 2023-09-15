@@ -10,16 +10,11 @@ use App\CleanArch\Infrastructure\Adapters\Repositories\PdoRepository;
 use App\CleanArch\Infrastructure\Adapters\Presenters\CustomerPresenter;
 use App\CleanArch\Infrastructure\Adapters\Controllers\CustomerController;
 
-require_once __DIR__ . '/../vendor/autoload.php';
-
 $customerRepository = new PdoRepository();
 $pdfAdapter = new DomPdfAdapter();
 $storageAdapter = new LocalStorageAdapter();
 
 $customerUseCase = new CustomerUseCase($customerRepository, $pdfAdapter, $storageAdapter); 
-$inputDto = new CustomerInputDto('bruce@warner-dc.com', 'test.pdf', __DIR__. '/../storage/customer');
-$output = $customerUseCase->handle($inputDto);
-
 $request = new Request('GET', 'http://localhost');
 $response = new Response();
 
@@ -29,9 +24,12 @@ $customerController = new CustomerController(
     $customerUseCase
 );
 
+$inputDto = new CustomerInputDto('bruce@warner-dc.com', 'CustomerControllerTest.pdf', __DIR__. '/../../../../tests/storage/customer');
 $customerPresenter = new CustomerPresenter();
 
-echo $customerController
+$response = $customerController
     ->handle($inputDto, $customerPresenter)
     ->getBody();
 
+it("should returns a object", fn() => expect($response)->toBeObject());
+it("should exists the file in directory", fn() => expect(json_decode($response)->fileName)->toBeReadableFile());
