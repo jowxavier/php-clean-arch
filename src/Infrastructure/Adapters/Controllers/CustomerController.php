@@ -23,7 +23,7 @@ final class CustomerController
         $this->response
             ->getBody()
             ->write($presenter->output([
-                'fileName' => $output->getFileName()
+                'filename' => $output->getFileName()
             ]));
 
         return $this->response
