@@ -6,14 +6,12 @@ use PDO;
 use DateTimeImmutable;
 use App\CleanArch\Domain\Entities\Customer;
 use App\CleanArch\Domain\ValueObjects\Email;
+use App\CleanArch\Infrastructure\Database\PdoConnection;
 use App\CleanArch\Domain\Exceptions\CustomerNotFoundException;
 use App\CleanArch\Domain\Repositories\CustomerRepositoryInterface;
 
-final class PdoRepository implements CustomerRepositoryInterface
+final class PdoRepository extends PdoConnection implements CustomerRepositoryInterface
 {
-    public function __construct(private PDO $pdo)
-    {}
-
     public function findByEmail(Email $email): Customer
     {
         $query = $this->pdo->prepare(
